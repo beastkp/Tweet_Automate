@@ -1,0 +1,27 @@
+﻿@page
+@model IndexModel
+
+<h2>Top Tweets to Reply To</h2>
+
+@if (!Model.Tweets.Any())
+{
+    <p>No tweets found.</p>
+}
+else
+{
+    @foreach (var item in Model.Tweets)
+    {
+        <div style="margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid #ddd;">
+            <div style="color:#555;font-size:14px;">
+                @item.Tweet.Metrics.LikeCount likes ·
+                @item.Tweet.Metrics.ReplyCount replies
+            </div>
+
+            <p>@item.Tweet.Text</p>
+
+            <a href="https://twitter.com/i/web/status/@item.Tweet.Id" target="_blank">
+                Open on Twitter
+            </a>
+        </div>
+    }
+}
