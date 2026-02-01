@@ -17,7 +17,6 @@ The focus is on **relatable, high-engagement developer content** rather than pur
 - Displays curated tweets in a clean, mobile-friendly UI
 - Deployed **for free** on **Render**
 
----
 
 ## 🏗️ Tech Stack
 
@@ -29,7 +28,6 @@ The focus is on **relatable, high-engagement developer content** rather than pur
 - **Docker**
 - **Render (Free Tier)**
 
----
 ## 📁 Project Structure
 ```
 TwitterAutomation
@@ -56,7 +54,6 @@ TwitterAutomation
 ├── Dockerfile
 └── README.md
 ```
----
 ## 🧑‍💻 How to Use This Project
 
 You can run this project **locally** or **deploy it for free** (just like the live version) by following the steps below.
@@ -70,7 +67,6 @@ Make sure you have:
 - An **X (Twitter) Developer Account**
 - A **Bearer Token** from the X Developer Portal
 
----
 
 ### 2️⃣ Get a Twitter (X) Bearer Token
 
@@ -104,6 +100,4 @@ dotnet run
 
 - [Krish Panchal](https://github.com/beastkp)
 
-
-## 📁 Project Structure
 
