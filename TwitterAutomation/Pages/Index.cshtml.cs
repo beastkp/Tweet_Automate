@@ -25,16 +25,24 @@ namespace TwitterAutomation.Pages
         {
             const string cacheKey = "daily_tweets";
 
-            if (!_cache.TryGetValue(cacheKey, out List<(TweetDto Tweet, double Score)> cached))
+            try
             {
-                var rawTweets = await _twitterClient.SearchTweetsAsync();
-                var filtered = TweetFilter.Apply(rawTweets);
-                cached = TweetRanker.Rank(filtered).Take(50).ToList();
+                if (!_cache.TryGetValue(cacheKey, out List<(TweetDto Tweet, double Score)> cached))
+                {
+                    var rawTweets = await _twitterClient.SearchTweetsAsync();
+                    var filtered = TweetFilter.Apply(rawTweets);
+                    cached = TweetRanker.Rank(filtered).Take(10).ToList();
 
-                _cache.Set(cacheKey, cached, TimeSpan.FromHours(12));
+                    _cache.Set(cacheKey, cached, TimeSpan.FromHours(24));
+                }
+
+                Tweets = cached;
+            }catch(Exception ex)
+            {
+                _logger.LogError(ex, "Twitter API failed");
+                Tweets = [];
             }
 
-            Tweets = cached;
         }
     }
 }

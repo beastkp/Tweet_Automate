@@ -23,13 +23,20 @@ namespace TwitterDiscovery.Procurement
         public async Task<List<TweetDto>> SearchTweetsAsync()
         {
             var query =
-                "Angular OR \".NET\" OR \"System Design\" " +
-                "-is:retweet -is:reply -meme -lol -😂";
+                "(" +
+                    "\"as a developer\" OR \"as a software engineer\" OR \"as a programmer\" " +
+                    "OR \"developer life\" OR \"dev life\" OR \"software engineering\"" +
+                ") AND (" +
+                    "\"burnout\" OR \"stuck\" OR \"frustrating\" OR \"hard\" OR \"confusing\" " +
+                    "OR \"learning to code\" OR \"learning programming\" " +
+                    "OR \"hot take\" OR \"unpopular opinion\"" +
+                ") " +
+                "-is:retweet -is:reply lang:en";
 
             var url =
                 "https://api.twitter.com/2/tweets/search/recent" +
                 $"?query={Uri.EscapeDataString(query)}" +
-                "&max_results=100" +
+                "&max_results=5" +
                 "&tweet.fields=created_at,public_metrics";
 
             var response = await _httpClient.GetAsync(url);
