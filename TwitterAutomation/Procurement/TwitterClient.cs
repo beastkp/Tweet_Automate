@@ -26,21 +26,28 @@ namespace TwitterDiscovery.Procurement
                 "(" +
                     "\"as a developer\" OR \"as a software engineer\" OR \"as a programmer\" " +
                     "OR \"developer life\" OR \"dev life\" OR \"software engineering\"" +
-                ") AND (" +
+                ") " +
+                "(" +
                     "\"burnout\" OR \"stuck\" OR \"frustrating\" OR \"hard\" OR \"confusing\" " +
                     "OR \"learning to code\" OR \"learning programming\" " +
                     "OR \"hot take\" OR \"unpopular opinion\"" +
                 ") " +
                 "-is:retweet -is:reply lang:en";
 
+
+
             var url =
                 "https://api.twitter.com/2/tweets/search/recent" +
                 $"?query={Uri.EscapeDataString(query)}" +
-                "&max_results=5" +
+                "&max_results=10" +
                 "&tweet.fields=created_at,public_metrics";
 
             var response = await _httpClient.GetAsync(url);
-            response.EnsureSuccessStatusCode();
+            if (!response.IsSuccessStatusCode)
+            {
+                var error = await response.Content.ReadAsStringAsync();
+                throw new Exception($"Twitter API error: {error}");
+            }
 
             using var stream = await response.Content.ReadAsStreamAsync();
             using var doc = await JsonDocument.ParseAsync(stream);
