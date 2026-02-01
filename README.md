@@ -58,7 +58,7 @@ TwitterAutomation
 
 You can run this project **locally** or **deploy it for free** (just like the live version) by following the steps below.
 
-### 1️⃣ Prerequisites
+###  Prerequisites
 
 Make sure you have:
 
@@ -68,17 +68,16 @@ Make sure you have:
 - A **Bearer Token** from the X Developer Portal
 
 
-### 2️⃣ Get a Twitter (X) Bearer Token
+###  Get a Twitter (X) Bearer Token
 
 1. Go to the **X Developer Portal**
 2. Create or select a project/app
 3. Copy the **Bearer Token**
 
-### 3️⃣ Clone the Repository
+### Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/beastkp/Tweet_Automate.git
 ```
 Add this in your appsettings.json
 ```
